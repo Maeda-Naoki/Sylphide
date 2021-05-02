@@ -15,3 +15,7 @@ ARG UserHomeDir="/home/BuildUser"
 # Add build user (Non-root user)
 RUN addgroup -g ${GID} -S ${GroupName} && \
     adduser -u ${UID} -S -G ${GroupName} -h ${UserHomeDir} ${UserName}
+
+# Install Rust toolchains
+RUN rustup update && \
+    rustup component add rustfmt clippy rust-analysis rust-src

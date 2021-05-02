@@ -11,3 +11,7 @@ ARG UID=10000
 ARG GroupName="BuildGroup"
 ARG UserName="BuildUser"
 ARG UserHomeDir="/home/BuildUser"
+
+# Add build user (Non-root user)
+RUN addgroup -g ${GID} -S ${GroupName} && \
+    adduser -u ${UID} -S -G ${GroupName} -h ${UserHomeDir} ${UserName}

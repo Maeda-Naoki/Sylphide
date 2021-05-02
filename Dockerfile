@@ -19,3 +19,7 @@ RUN addgroup -g ${GID} -S ${GroupName} && \
 # Install Rust toolchains
 RUN rustup update && \
     rustup component add rustfmt clippy rust-analysis rust-src
+
+# Setup working user
+USER $UserName
+WORKDIR $UserHomeDir

@@ -6,3 +6,4 @@ services:
     volumes: 
       - ./:/home/BuildUser/DevApp
     working_dir: /home/BuildUser/DevApp
+    tty: true

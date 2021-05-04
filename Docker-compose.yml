@@ -5,3 +5,4 @@ services:
     build: ./
     volumes: 
       - ./:/home/BuildUser/DevApp
+    working_dir: /home/BuildUser/DevApp

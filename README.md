@@ -9,7 +9,7 @@ This project is intended to be the base of the Rust project.
   - rust-analysis
 
 ## Development Environment
-- [ ] Docker
+- [x] Docker
 - [ ] VSCode Dev container
 - GitHub Action
   - [ ] Build

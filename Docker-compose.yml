@@ -3,6 +3,7 @@ version: "3.9"
 services:
   rust:
     build: ./
+    container_name: RustDev
     volumes: 
       - ./:/home/BuildUser/DevApp
     working_dir: /home/BuildUser/DevApp

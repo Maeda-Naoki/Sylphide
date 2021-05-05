@@ -1,5 +1,5 @@
 # Base Docker image
-FROM rust:1.51.0-alpine3.13
+FROM rust:1.51.0-slim-buster
 
 # Metadata of Docker image
 LABEL maintainer="maeda.naoki.md9@gmail.com"
@@ -13,7 +13,7 @@ ARG UserName="BuildUser"
 ARG UserHomeDir="/home/BuildUser"
 
 # Add build user (Non-root user)
-RUN addgroup -g ${GID} -S ${GroupName} && \
+RUN groupadd -g ${GID} ${GroupName} && \
     adduser -u ${UID} -S -G ${GroupName} -h ${UserHomeDir} ${UserName}
 
 # Install Rust toolchains

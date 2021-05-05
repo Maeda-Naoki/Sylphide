@@ -13,7 +13,7 @@ ARG UserName="BuildUser"
 ARG UserHomeDir="/home/BuildUser"
 
 # Add build user (Non-root user)
-RUN addgroup -g ${GID} -S ${GroupName} && \
+RUN groupadd -g ${GID} ${GroupName} && \
     adduser -u ${UID} -S -G ${GroupName} -h ${UserHomeDir} ${UserName}
 
 # Install Rust toolchains

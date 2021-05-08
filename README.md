@@ -10,7 +10,7 @@ This project is intended to be the base of the Rust project.
 
 ## Development Environment
 - [x] Docker
-- [ ] VSCode Dev container
+- [x] VSCode Dev container
 - GitHub Action
   - [ ] Build
   - [ ] Test

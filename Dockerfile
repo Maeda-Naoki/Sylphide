@@ -14,7 +14,7 @@ ARG UserHomeDir="/home/developer"
 
 # Add build user (Non-root user)
 RUN groupadd -g ${GID} ${GroupName} && \
-    adduser --uid ${UID} --gid ${GroupName} --home ${UserHomeDir} ${UserName}
+    adduser --uid ${UID} --gid ${GID} --home ${UserHomeDir} ${UserName}
 
 # Install Rust toolchains
 RUN rustup update && \

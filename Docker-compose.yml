@@ -5,6 +5,6 @@ services:
     build: ./
     container_name: RustDev
     volumes: 
-      - ./:/home/BuildUser/DevApp
-    working_dir: /home/BuildUser/DevApp
+      - ./:/home/developer/DevApp
+    working_dir: /home/developer/DevApp
     tty: true

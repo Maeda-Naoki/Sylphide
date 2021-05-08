@@ -9,8 +9,8 @@ LABEL maintainer="maeda.naoki.md9@gmail.com"
 ARG GID=10001
 ARG UID=10000
 ARG GroupName="BuildGroup"
-ARG UserName="BuildUser"
-ARG UserHomeDir="/home/BuildUser"
+ARG UserName="developer"
+ARG UserHomeDir="/home/developer"
 
 # Add build user (Non-root user)
 RUN groupadd -g ${GID} ${GroupName} && \

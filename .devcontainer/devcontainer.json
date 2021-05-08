@@ -3,4 +3,11 @@
   "dockerComposeFile": "../Docker-compose.yml",
   "service": "rust",
   "workspaceFolder": "/home/developer/DevApp",
+  "settings": {
+    "terminal.integrated.profiles.linux": {
+      "Bash": {
+        "path": "/bin/bash"
+      }
+    },
+  },
 }

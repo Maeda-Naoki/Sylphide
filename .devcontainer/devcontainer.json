@@ -19,5 +19,7 @@
 	"extensions": [
     // Editor
     "editorconfig.editorconfig",
+    // Rust
+    "matklad.rust-analyzer",
   ],
 }

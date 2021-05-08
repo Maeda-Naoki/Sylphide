@@ -8,7 +8,7 @@ LABEL maintainer="maeda.naoki.md9@gmail.com"
 # Build user setting
 ARG GID=10001
 ARG UID=10000
-ARG GroupName="BuildGroup"
+ARG GroupName="DevelopGroup"
 ARG UserName="developer"
 ARG UserHomeDir="/home/developer"
 

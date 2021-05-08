@@ -1,5 +1,5 @@
 # Base Docker image
-FROM rust:1.51.0-slim-buster
+FROM rust:1.52.0-slim-buster
 
 # Metadata of Docker image
 LABEL maintainer="maeda.naoki.md9@gmail.com"

@@ -35,6 +35,11 @@ RUN groupadd -g ${GID} ${GroupName} && \
 RUN rustup update && \
     rustup component add rustfmt clippy rust-analysis rust-src
 
+# Download rust-analyzer language server binary
+RUN mkdir -p ${RustAnalyzerBinDirctory} && \
+    curl -L ${RustAnalyzerReleaseURL} -o ${RustAnalyzerBinPath} && \
+    chmod +x ${RustAnalyzerBinPath}
+
 # Setup working user
 USER $UserName
 WORKDIR $UserHomeDir

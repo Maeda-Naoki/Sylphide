@@ -19,6 +19,9 @@ ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/relea
 ARG RustAnalyzerBinDirctory=${UserHomeDir}"/.local/bin/"
 ARG RustAnalyzerBinPath=${RustAnalyzerBinDirctory}"rust-analyzer"
 
+# Docker image environment variable
+ENV PATH $PATH:${RustAnalyzerBinDirctory}
+
 # Install dependencies
 RUN apt update && apt install -y \
     curl \

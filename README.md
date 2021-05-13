@@ -6,7 +6,7 @@ This project is intended to be the base of the Rust project.
 - toolchain
   - rustfmt
   - clippy
-  - rust-analysis
+  - rust-analyzer
 
 ## Development Environment
 - [x] Docker

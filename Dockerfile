@@ -12,6 +12,11 @@ ARG GroupName="DevelopGroup"
 ARG UserName="developer"
 ARG UserHomeDir="/home/developer"
 
+# Install dependencies
+RUN apt update && apt install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
 # Add build user (Non-root user)
 RUN groupadd -g ${GID} ${GroupName} && \
     adduser --uid ${UID} --gid ${GID} --home ${UserHomeDir} ${UserName}

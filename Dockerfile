@@ -15,6 +15,10 @@ ARG UserHomeDir="/home/developer"
 # rust-analyzer
 ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux"
 
+# rust-analyzer Language Server Binary
+ARG RustAnalyzerBinDirctory=${UserHomeDir}"/.local/bin/"
+ARG RustAnalyzerBinPath=${RustAnalyzerBinDirctory}"rust-analyzer"
+
 # Install dependencies
 RUN apt update && apt install -y \
     curl \

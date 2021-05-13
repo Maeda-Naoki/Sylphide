@@ -12,6 +12,9 @@ ARG GroupName="DevelopGroup"
 ARG UserName="developer"
 ARG UserHomeDir="/home/developer"
 
+# rust-analyzer
+ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux"
+
 # Install dependencies
 RUN apt update && apt install -y \
     curl \

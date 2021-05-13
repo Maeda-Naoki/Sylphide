@@ -12,6 +12,21 @@ ARG GroupName="DevelopGroup"
 ARG UserName="developer"
 ARG UserHomeDir="/home/developer"
 
+# rust-analyzer
+ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux"
+
+# rust-analyzer Language Server Binary
+ARG RustAnalyzerBinDirctory=${UserHomeDir}"/.local/bin/"
+ARG RustAnalyzerBinPath=${RustAnalyzerBinDirctory}"rust-analyzer"
+
+# Docker image environment variable
+ENV PATH $PATH:${RustAnalyzerBinDirctory}
+
+# Install dependencies
+RUN apt update && apt install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
 # Add build user (Non-root user)
 RUN groupadd -g ${GID} ${GroupName} && \
     adduser --uid ${UID} --gid ${GID} --home ${UserHomeDir} ${UserName}
@@ -19,6 +34,11 @@ RUN groupadd -g ${GID} ${GroupName} && \
 # Install Rust toolchains
 RUN rustup update && \
     rustup component add rustfmt clippy rust-analysis rust-src
+
+# Download rust-analyzer language server binary
+RUN mkdir -p ${RustAnalyzerBinDirctory} && \
+    curl -L ${RustAnalyzerReleaseURL} -o ${RustAnalyzerBinPath} && \
+    chmod +x ${RustAnalyzerBinPath}
 
 # Setup working user
 USER $UserName

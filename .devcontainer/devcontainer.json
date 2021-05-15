@@ -17,8 +17,8 @@
     "rust-analyzer.server.path": "/home/developer/.local/bin/rust-analyzer"
   },
 
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
     // Editor
     "editorconfig.editorconfig",
     // Rust

@@ -10,3 +10,5 @@ for file in $(git diff --name-only --staged); do
 		git add ${file}
     fi
 done
+
+echo "Formatting done"

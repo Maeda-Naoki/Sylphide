@@ -18,7 +18,7 @@ This project is intended to be the base of the Rust project.
   - [ ] Build
   - [ ] Test
 - Git Hooks
-  - [ ] pre-commit
-    - [ ] clippy
-    - [ ] code format
+  - [x] pre-commit
+    - [x] clippy
+    - [x] code format
     - [ ] commit message lint

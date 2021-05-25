@@ -24,7 +24,10 @@ ENV PATH $PATH:${RustAnalyzerBinDirctory}
 
 # Install dependencies
 RUN apt update && apt install -y \
+    apt-transport-https \
+    ca-certificates \
     curl \
+    gnupg \
     && rm -rf /var/lib/apt/lists/*
 
 # Add build user (Non-root user)

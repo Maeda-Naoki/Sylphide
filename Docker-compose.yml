@@ -8,6 +8,9 @@ services:
       - ./:/home/developer/DevApp
     working_dir: /home/developer/DevApp
     tty: true
+    depends_on: 
+      - dind
+
   dind:
     image: docker:20.10-dind
     environment:

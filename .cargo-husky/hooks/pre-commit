@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+# Run clippy
+cargo clippy
+
+# Format staged Rust source code
+for file in $(git diff --name-only --staged); do
+	if [[ "${file}" == *.rs ]]; then
+		rustfmt ${file}
+		git add ${file}
+    fi
+done
+
+echo "Formatting done"

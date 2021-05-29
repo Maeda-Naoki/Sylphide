@@ -1,0 +1,28 @@
+{
+  "name": "RustDevContainer",
+  "dockerComposeFile": "../Docker-compose.yml",
+  "service": "rust",
+  "workspaceFolder": "/home/developer/DevApp",
+  "settings": {
+    "terminal.integrated.profiles.linux": {
+      "Bash": {
+        "path": "/bin/bash"
+      }
+    },
+    // VS Code don't watch files under ./target
+    "files.watcherExclude": {
+      "**/target/**": true
+    },
+    // Rust analyzer
+    "rust-analyzer.server.path": "/home/developer/.local/bin/rust-analyzer"
+  },
+
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    // Editor
+    "editorconfig.editorconfig",
+    // Rust
+    "matklad.rust-analyzer",
+    "vadimcn.vscode-lldb"
+  ],
+}

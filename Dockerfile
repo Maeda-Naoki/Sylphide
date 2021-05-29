@@ -45,7 +45,9 @@ RUN groupadd -g ${GID} ${GroupName} && \
 
 # Install Rust toolchains
 RUN rustup update && \
-    rustup component add rustfmt clippy rust-analysis rust-src
+    rustup component add rustfmt clippy rust-analysis rust-src && \
+    # Install cross(Docker remote support ver)
+    cargo install --git https://github.com/schrieveslaach/cross/ --branch docker-remote
 
 # Download rust-analyzer language server binary
 RUN mkdir -p ${RustAnalyzerBinDirctory} && \

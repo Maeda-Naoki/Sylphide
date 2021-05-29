@@ -40,6 +40,10 @@ RUN mkdir -p ${RustAnalyzerBinDirctory} && \
     curl -L ${RustAnalyzerReleaseURL} -o ${RustAnalyzerBinPath} && \
     chmod +x ${RustAnalyzerBinPath}
 
+# Change rust directory owner
+RUN chown -R ${UserName} /usr/local/cargo/ && \
+    chown -R ${UserName} /usr/local/rustup/
+
 # Setup working user
 USER $UserName
 WORKDIR $UserHomeDir

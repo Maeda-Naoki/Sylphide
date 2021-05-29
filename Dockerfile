@@ -24,7 +24,19 @@ ENV PATH $PATH:${RustAnalyzerBinDirctory}
 
 # Install dependencies
 RUN apt update && apt install -y \
+    apt-transport-https \
+    ca-certificates \
     curl \
+    gnupg \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Docker-cli
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | \
+    gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+    buster stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    apt update && apt install -y --no-install-recommends \
+    docker-ce-cli \
     && rm -rf /var/lib/apt/lists/*
 
 # Add build user (Non-root user)
@@ -33,7 +45,9 @@ RUN groupadd -g ${GID} ${GroupName} && \
 
 # Install Rust toolchains
 RUN rustup update && \
-    rustup component add rustfmt clippy rust-analysis rust-src
+    rustup component add rustfmt clippy rust-analysis rust-src && \
+    # Install cross(Docker remote support ver)
+    cargo install --git https://github.com/schrieveslaach/cross/ --branch docker-remote
 
 # Download rust-analyzer language server binary
 RUN mkdir -p ${RustAnalyzerBinDirctory} && \

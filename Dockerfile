@@ -51,7 +51,7 @@ RUN rustup update && \
 
 # Download rust-analyzer language server binary
 RUN mkdir -p ${RustAnalyzerBinDirctory} && \
-    curl -L ${RustAnalyzerReleaseURL} -o ${RustAnalyzerBinPath} && \
+    curl -L ${RustAnalyzerReleaseURL}  | gunzip -c - > ${RustAnalyzerBinPath} && \
     chmod +x ${RustAnalyzerBinPath}
 
 # Change rust directory owner

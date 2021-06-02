@@ -13,7 +13,7 @@ ARG UserName="developer"
 ARG UserHomeDir="/home/developer"
 
 # rust-analyzer
-ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux"
+ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz"
 
 # rust-analyzer Language Server Binary
 ARG RustAnalyzerBinDirctory=${UserHomeDir}"/.local/bin/"
@@ -51,7 +51,7 @@ RUN rustup update && \
 
 # Download rust-analyzer language server binary
 RUN mkdir -p ${RustAnalyzerBinDirctory} && \
-    curl -L ${RustAnalyzerReleaseURL} -o ${RustAnalyzerBinPath} && \
+    curl -L ${RustAnalyzerReleaseURL}  | gunzip -c - > ${RustAnalyzerBinPath} && \
     chmod +x ${RustAnalyzerBinPath}
 
 # Change rust directory owner

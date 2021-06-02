@@ -13,7 +13,7 @@ ARG UserName="developer"
 ARG UserHomeDir="/home/developer"
 
 # rust-analyzer
-ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux"
+ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz"
 
 # rust-analyzer Language Server Binary
 ARG RustAnalyzerBinDirctory=${UserHomeDir}"/.local/bin/"

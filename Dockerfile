@@ -23,7 +23,7 @@ ARG RustAnalyzerBinPath=${RustAnalyzerBinDirctory}"rust-analyzer"
 ENV PATH $PATH:${RustAnalyzerBinDirctory}
 
 # Install dependencies
-RUN apt update && apt install -y \
+RUN apt update && apt install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
     curl \

@@ -59,5 +59,5 @@ RUN chown -R ${UserName} /usr/local/cargo/ && \
     chown -R ${UserName} /usr/local/rustup/
 
 # Setup working user
-USER $UserName
-WORKDIR $UserHomeDir
+USER ${UserName}
+WORKDIR ${UserHomeDir}

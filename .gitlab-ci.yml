@@ -3,3 +3,4 @@ stages:
 
 build:
   stage: build
+  image: registry.gitlab.com/naoki_maeda/sylphide

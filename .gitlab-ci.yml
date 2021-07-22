@@ -15,3 +15,7 @@ build:
   script:
     - cross build --target x86_64-unknown-linux-gnu
     - cross build --target x86_64-pc-windows-gnu
+  rules:
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master" || 
+          $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"
+      when: always

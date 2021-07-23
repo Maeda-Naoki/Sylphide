@@ -3,7 +3,7 @@ stages:
 
 build:
   stage: build
-  image: registry.gitlab.com/naoki_maeda/sylphide
+  image: $CI_REGISTRY_IMAGE
   services:
     - name: docker:19.03.12-dind
       alias: docker

@@ -16,12 +16,15 @@ build:
     - cross build --target x86_64-unknown-linux-gnu
     - cross build --target x86_64-pc-windows-gnu
   rules:
+    # When the master / develop branch is changed
     - if: $CI_COMMIT_BRANCH == "master" ||
           $CI_COMMIT_BRANCH == "develop"
       when: always
+    # When the MR target is the master / develop branch
     - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master" || 
           $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"
       when: always
+    # When the MR source is a feature branch
     - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ "/^feature"
       when: manual
       allow_failure: true

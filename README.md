@@ -16,7 +16,7 @@ This project is intended to be the base of the Rust project.
   - [ ] Build
   - [ ] Test
 - GitLab CI
-  - [ ] Build
+  - [X] Build
   - [ ] Test
 - Git Hooks
   - [x] pre-commit

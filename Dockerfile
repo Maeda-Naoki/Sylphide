@@ -1,5 +1,5 @@
 # Base Docker image
-FROM rust:1.52.1-slim-buster
+FROM rust:1.53.0-slim-buster
 
 # Metadata of Docker image
 LABEL maintainer="maeda.naoki.md9@gmail.com"
@@ -23,7 +23,7 @@ ARG RustAnalyzerBinPath=${RustAnalyzerBinDirctory}"rust-analyzer"
 ENV PATH $PATH:${RustAnalyzerBinDirctory}
 
 # Install dependencies
-RUN apt update && apt install -y \
+RUN apt update && apt install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -59,5 +59,5 @@ RUN chown -R ${UserName} /usr/local/cargo/ && \
     chown -R ${UserName} /usr/local/rustup/
 
 # Setup working user
-USER $UserName
-WORKDIR $UserHomeDir
+USER ${UserName}
+WORKDIR ${UserHomeDir}

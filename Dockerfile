@@ -32,6 +32,8 @@ RUN rustup update && \
     # Install cross(Docker remote support ver)
     cargo install --git https://github.com/schrieveslaach/cross/ --branch docker-remote
 
+# =================================================================================================
+
 # Base Docker image
 FROM rust:1.54.0-bullseye
 

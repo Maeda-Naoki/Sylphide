@@ -1,6 +1,10 @@
 # Setup Docker image
 FROM rust:1.54.0-bullseye AS setup
 
+# rust-analyzer
+ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz"
+ARG RustAnalyzerTempBinPath="/tmp/rust-analyzer"
+
 # Install dependencies
 RUN apt update && apt install -y --no-install-recommends \
     apt-transport-https \
@@ -18,6 +22,10 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | \
     docker-ce-cli \
     && rm -rf /var/lib/apt/lists/*
 
+# Download rust-analyzer language server binary
+RUN curl -L ${RustAnalyzerReleaseURL}   | gunzip -c - > ${RustAnalyzerTempBinPath} && \
+    chmod +x ${RustAnalyzerTempBinPath}
+
 # Base Docker image
 FROM rust:1.54.0-bullseye
 
@@ -31,9 +39,6 @@ ARG UID=10000
 ARG GroupName="DevelopGroup"
 ARG UserName="developer"
 ARG UserHomeDir="/home/developer"
-
-# rust-analyzer
-ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz"
 
 # rust-analyzer Language Server Binary
 ARG RustAnalyzerBinDirctory=${UserHomeDir}"/.local/bin/"
@@ -51,11 +56,6 @@ RUN rustup update && \
     rustup component add rustfmt clippy rust-analysis rust-src && \
     # Install cross(Docker remote support ver)
     cargo install --git https://github.com/schrieveslaach/cross/ --branch docker-remote
-
-# Download rust-analyzer language server binary
-RUN mkdir -p ${RustAnalyzerBinDirctory} && \
-    curl -L ${RustAnalyzerReleaseURL}  | gunzip -c - > ${RustAnalyzerBinPath} && \
-    chmod +x ${RustAnalyzerBinPath}
 
 # Copy Docker cli binary
 COPY --from=setup /usr/bin/docker /usr/bin/docker

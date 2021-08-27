@@ -57,6 +57,9 @@ RUN mkdir -p ${RustAnalyzerBinDirctory} && \
     curl -L ${RustAnalyzerReleaseURL}  | gunzip -c - > ${RustAnalyzerBinPath} && \
     chmod +x ${RustAnalyzerBinPath}
 
+# Copy Docker cli binary
+COPY --from=setup /usr/bin/docker /usr/bin/docker
+
 # Change rust directory owner
 RUN chown -R ${UserName} /usr/local/cargo/ && \
     chown -R ${UserName} /usr/local/rustup/

@@ -64,9 +64,10 @@ COPY --from=setup /usr/bin/docker /usr/bin/docker
 # Copy rust-analyzer language server binary
 COPY --from=setup ${RustAnalyzerTempBinPath} ${RustAnalyzerBinPath}
 
-# Change rust directory owner
-RUN chown -R ${UserName} /usr/local/cargo/ && \
-    chown -R ${UserName} /usr/local/rustup/
+# Copy rust directory
+RUN rm -rf /usr/local/cargo /usr/local/rustup
+COPY --from=setup --chown=${UID}:${GID} /usr/local/cargo/ /usr/local/cargo/
+COPY --from=setup --chown=${UID}:${GID} /usr/local/rustup/  /usr/local/rustup/
 
 # Setup working user
 USER ${UserName}

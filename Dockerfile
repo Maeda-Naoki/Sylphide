@@ -26,6 +26,12 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | \
 RUN curl -L ${RustAnalyzerReleaseURL}   | gunzip -c - > ${RustAnalyzerTempBinPath} && \
     chmod +x ${RustAnalyzerTempBinPath}
 
+# Install Rust toolchains
+RUN rustup update && \
+    rustup component add rustfmt clippy rust-analysis rust-src && \
+    # Install cross(Docker remote support ver)
+    cargo install --git https://github.com/schrieveslaach/cross/ --branch docker-remote
+
 # Base Docker image
 FROM rust:1.54.0-bullseye
 
@@ -51,12 +57,6 @@ ENV PATH $PATH:${RustAnalyzerBinDirctory}
 # Add build user (Non-root user)
 RUN groupadd -g ${GID} ${GroupName} && \
     adduser --uid ${UID} --gid ${GID} --home ${UserHomeDir} ${UserName}
-
-# Install Rust toolchains
-RUN rustup update && \
-    rustup component add rustfmt clippy rust-analysis rust-src && \
-    # Install cross(Docker remote support ver)
-    cargo install --git https://github.com/schrieveslaach/cross/ --branch docker-remote
 
 # Copy Docker cli binary
 COPY --from=setup /usr/bin/docker /usr/bin/docker

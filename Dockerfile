@@ -41,6 +41,7 @@ ARG UserName="developer"
 ARG UserHomeDir="/home/developer"
 
 # rust-analyzer Language Server Binary
+ARG RustAnalyzerTempBinPath="/tmp/rust-analyzer"
 ARG RustAnalyzerBinDirctory=${UserHomeDir}"/.local/bin/"
 ARG RustAnalyzerBinPath=${RustAnalyzerBinDirctory}"rust-analyzer"
 
@@ -59,6 +60,9 @@ RUN rustup update && \
 
 # Copy Docker cli binary
 COPY --from=setup /usr/bin/docker /usr/bin/docker
+
+# Copy rust-analyzer language server binary
+COPY --from=setup ${RustAnalyzerTempBinPath} ${RustAnalyzerBinPath}
 
 # Change rust directory owner
 RUN chown -R ${UserName} /usr/local/cargo/ && \

@@ -1,3 +1,6 @@
+# Setup Docker image
+FROM rust:1.54.0-bullseye AS setup
+
 # Base Docker image
 FROM rust:1.54.0-bullseye
 

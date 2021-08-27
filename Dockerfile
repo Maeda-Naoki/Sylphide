@@ -1,6 +1,23 @@
 # Setup Docker image
 FROM rust:1.54.0-bullseye AS setup
 
+# Install dependencies
+RUN apt update && apt install -y --no-install-recommends \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Docker-cli
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | \
+    gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+    bullseye stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    apt update && apt install -y --no-install-recommends \
+    docker-ce-cli \
+    && rm -rf /var/lib/apt/lists/*
+
 # Base Docker image
 FROM rust:1.54.0-bullseye
 
@@ -24,23 +41,6 @@ ARG RustAnalyzerBinPath=${RustAnalyzerBinDirctory}"rust-analyzer"
 
 # Docker image environment variable
 ENV PATH $PATH:${RustAnalyzerBinDirctory}
-
-# Install dependencies
-RUN apt update && apt install -y --no-install-recommends \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Docker-cli
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | \
-    gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
-    bullseye stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
-    apt update && apt install -y --no-install-recommends \
-    docker-ce-cli \
-    && rm -rf /var/lib/apt/lists/*
 
 # Add build user (Non-root user)
 RUN groupadd -g ${GID} ${GroupName} && \

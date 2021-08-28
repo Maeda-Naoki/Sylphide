@@ -10,8 +10,7 @@ RUN apt update && apt install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
     curl \
-    gnupg \
-    && rm -rf /var/lib/apt/lists/*
+    gnupg
 
 # Install Docker-cli
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | \
@@ -19,8 +18,7 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | \
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
     bullseye stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt update && apt install -y --no-install-recommends \
-    docker-ce-cli \
-    && rm -rf /var/lib/apt/lists/*
+    docker-ce-cli
 
 # Download rust-analyzer language server binary
 RUN curl -L ${RustAnalyzerReleaseURL} | gunzip -c - > ${RustAnalyzerTempBinPath} && \

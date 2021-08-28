@@ -23,7 +23,7 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | \
     && rm -rf /var/lib/apt/lists/*
 
 # Download rust-analyzer language server binary
-RUN curl -L ${RustAnalyzerReleaseURL}   | gunzip -c - > ${RustAnalyzerTempBinPath} && \
+RUN curl -L ${RustAnalyzerReleaseURL} | gunzip -c - > ${RustAnalyzerTempBinPath} && \
     chmod +x ${RustAnalyzerTempBinPath}
 
 # Install Rust toolchains
@@ -67,8 +67,8 @@ COPY --from=setup /usr/bin/docker /usr/bin/docker
 COPY --from=setup ${RustAnalyzerTempBinPath} ${RustAnalyzerBinPath}
 
 # Copy rust directory
-RUN rm -rf /usr/local/cargo /usr/local/rustup
-COPY --from=setup --chown=${UID}:${GID} /usr/local/cargo/ /usr/local/cargo/
+RUN  rm -rf /usr/local/cargo /usr/local/rustup
+COPY --from=setup --chown=${UID}:${GID} /usr/local/cargo/   /usr/local/cargo/
 COPY --from=setup --chown=${UID}:${GID} /usr/local/rustup/  /usr/local/rustup/
 
 # Setup working user

@@ -2,7 +2,7 @@
 ## Overview
 This project is intended to be the base of the Rust project.
 ## Rust Environment
-- Rust : 1.52.1
+- Rust : 1.54.0
 - toolchain
   - rustfmt
   - clippy
@@ -16,7 +16,7 @@ This project is intended to be the base of the Rust project.
   - [ ] Build
   - [ ] Test
 - GitLab CI
-  - [ ] Build
+  - [X] Build
   - [ ] Test
 - Git Hooks
   - [x] pre-commit

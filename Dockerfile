@@ -70,5 +70,5 @@ COPY --from=setup --chown=${UID}:${GID} /usr/local/cargo/   /usr/local/cargo/
 COPY --from=setup --chown=${UID}:${GID} /usr/local/rustup/  /usr/local/rustup/
 
 # Setup working user
-USER ${UserName}
+USER ${UID}
 WORKDIR ${UserHomeDir}

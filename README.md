@@ -3,7 +3,7 @@
 This project is intended to be the base of the Rust project.
 
 ## Getting started
-### Linux
+### Mac OS / Linux
 1. Generate `.env` file
 
 ```bash

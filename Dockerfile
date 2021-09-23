@@ -1,5 +1,5 @@
 # Setup Docker image
-FROM rust:1.54.0-slim-bullseye AS setup
+FROM rust:1.55.0-slim-bullseye AS setup
 
 # rust-analyzer
 ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz"
@@ -33,7 +33,7 @@ RUN rustup update && \
 # =================================================================================================
 
 # Base Docker image
-FROM rust:1.54.0-slim-bullseye
+FROM rust:1.55.0-slim-bullseye
 
 # Metadata of Docker image
 LABEL maintainer="maeda.naoki.md9@gmail.com"

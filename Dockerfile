@@ -10,13 +10,14 @@ RUN apt update && apt install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
     curl \
-    gnupg
+    gnupg \
+    lsb-release
 
 # Install Docker-cli
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | \
     gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
-    bullseye stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | \
+    tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt update && apt install -y --no-install-recommends \
     docker-ce-cli
 

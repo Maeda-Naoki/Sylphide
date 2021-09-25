@@ -1,6 +1,10 @@
 stages:
+  - build_docker
   - build
 
+build_docker_image:
+  stage: build_docker
+  image: docker:20.10-dind
 build:
   stage: build
   image: $CI_REGISTRY_IMAGE

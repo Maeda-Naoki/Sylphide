@@ -38,6 +38,7 @@ FROM rust:1.55.0-slim-bullseye
 
 # Metadata of Docker image
 LABEL maintainer="maeda.naoki.md9@gmail.com"
+LABEL version="1.0.0"
 
 # Docker image build args
 # Build user setting

@@ -18,6 +18,7 @@ build_docker_image:
     - docker pull $CI_REGISTRY_IMAGE:latest || true
     - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:latest .
     - version=$(docker inspect --format='{{.ContainerConfig.Labels.version}}' $CI_REGISTRY_IMAGE:latest)
+    - docker build --tag $CI_REGISTRY_IMAGE:$version .
     - docker push $CI_REGISTRY_IMAGE:latest
   rules:
     - changes:

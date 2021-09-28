@@ -1,5 +1,5 @@
 # Setup Docker image
-FROM rust:1.54.0-bullseye AS setup
+FROM rust:1.55.0-slim-bullseye AS setup
 
 # rust-analyzer
 ARG RustAnalyzerReleaseURL="https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz"
@@ -10,13 +10,14 @@ RUN apt update && apt install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
     curl \
-    gnupg
+    gnupg \
+    lsb-release
 
 # Install Docker-cli
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | \
     gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
-    bullseye stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | \
+    tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt update && apt install -y --no-install-recommends \
     docker-ce-cli
 
@@ -33,10 +34,11 @@ RUN rustup update && \
 # =================================================================================================
 
 # Base Docker image
-FROM rust:1.54.0-bullseye
+FROM rust:1.55.0-slim-bullseye
 
 # Metadata of Docker image
 LABEL maintainer="maeda.naoki.md9@gmail.com"
+LABEL version="1.0.0"
 
 # Docker image build args
 # Build user setting
@@ -70,5 +72,5 @@ COPY --from=setup --chown=${UID}:${GID} /usr/local/cargo/   /usr/local/cargo/
 COPY --from=setup --chown=${UID}:${GID} /usr/local/rustup/  /usr/local/rustup/
 
 # Setup working user
-USER ${UserName}
+USER ${UID}
 WORKDIR ${UserHomeDir}

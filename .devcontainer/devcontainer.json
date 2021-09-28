@@ -1,6 +1,6 @@
 {
   "name": "RustDevContainer",
-  "dockerComposeFile": "../Docker-compose.yml",
+  "dockerComposeFile": "../docker-compose.yml",
   "service": "rust",
   "workspaceFolder": "/home/developer/DevApp",
   "settings": {

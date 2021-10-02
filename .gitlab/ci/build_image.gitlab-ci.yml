@@ -23,6 +23,7 @@ build_docker_image:
     - docker push $CI_REGISTRY_IMAGE:latest
     - docker push $CI_REGISTRY_IMAGE:$version
   rules:
+    # Run a job only when the Dockerfile is changed.
     - changes:
         - Dockerfile
       when: always

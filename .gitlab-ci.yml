@@ -2,30 +2,6 @@ stages:
   - build_docker
   - build
 
-build_docker_image:
-  stage: build_docker
-  image: docker:20.10-dind
-  services:
-    - name: docker:20.10-dind
-      alias: docker
-  variables:
-    # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
-    DOCKER_HOST: tcp://docker:2376
-    DOCKER_TLS_CERTDIR: "/certs"
-  before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-  script:
-    - docker pull $CI_REGISTRY_IMAGE:latest || true
-    - docker build --network host --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:latest .
-    - version=$(docker inspect --format='{{.ContainerConfig.Labels.version}}' $CI_REGISTRY_IMAGE:latest)
-    - docker build --tag $CI_REGISTRY_IMAGE:$version .
-    - docker push $CI_REGISTRY_IMAGE:latest
-    - docker push $CI_REGISTRY_IMAGE:$version
-  rules:
-    - changes:
-        - Dockerfile
-      when: always
-
 build:
   stage: build
   image: $CI_REGISTRY_IMAGE

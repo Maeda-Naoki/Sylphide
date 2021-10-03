@@ -26,4 +26,3 @@ build:
     # When the MR source is a feature branch
     - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ "/^feature"
       when: manual
-      allow_failure: true

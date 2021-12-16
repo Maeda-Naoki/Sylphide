@@ -14,7 +14,7 @@ This project is intended to be the base of the Rust project.
 
 
 ## Rust Environment
-- Rust : 1.56.0
+- Rust : 1.57.0
 - toolchain
   - rustfmt
   - clippy

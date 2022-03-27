@@ -17,3 +17,4 @@ features = ["user-hooks"]
 
 [profile.release]
 lto = true  # Enable Link time optimization
+strip = "debuginfo"

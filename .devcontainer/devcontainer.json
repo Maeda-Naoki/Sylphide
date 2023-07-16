@@ -23,7 +23,7 @@
         // Editor
         "editorconfig.editorconfig",
         // Rust
-        "matklad.rust-analyzer",
+        "rust-lang.rust-analyzer",
         "vadimcn.vscode-lldb"
       ]
     }

@@ -23,8 +23,10 @@
         // Editor
         "editorconfig.editorconfig",
         // Rust
-        "matklad.rust-analyzer",
-        "vadimcn.vscode-lldb"
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "serayuzgur.crates",
+        "tamasfe.even-better-toml"
       ]
     }
   }

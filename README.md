@@ -20,6 +20,9 @@ This project is intended to be the base of the Rust project.
   - clippy
   - rust-analyzer
   - cross
+- VSCode Extension
+  - [Crates](https://github.com/serayuzgur/crates)
+  - [Taplo](https://github.com/tamasfe/taplo)
 
 ## Development Environment
 - [x] Docker

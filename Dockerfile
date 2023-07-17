@@ -59,8 +59,7 @@ RUN groupadd -g ${GID} ${GroupName} && \
 COPY --from=setup /usr/bin/docker /usr/bin/docker
 
 # Copy rust directory
-RUN  rm -rf /usr/local/cargo /usr/local/rustup
-COPY --from=setup --chown=${UID}:${GID} /usr/local/cargo/   /usr/local/cargo/
+RUN  rm -rf /usr/local/rustup
 COPY --from=setup --chown=${UID}:${GID} /usr/local/rustup/  /usr/local/rustup/
 
 # Setup working user

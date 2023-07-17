@@ -25,12 +25,6 @@ RUN install -m 0755 -d /etc/apt/keyrings && \
     apt update && apt install -y --no-install-recommends \
     docker-ce-cli
 
-# Install Rust toolchains
-RUN rustup update && \
-    rustup component add rustfmt clippy rust-analysis rust-src && \
-    # Install cross(Docker remote support ver)
-    cargo install --git https://github.com/schrieveslaach/cross/ --branch docker-remote
-
 # =================================================================================================
 
 # Base Docker image
@@ -61,6 +55,12 @@ COPY --from=setup /usr/bin/docker /usr/bin/docker
 # Copy rust directory
 RUN  rm -rf /usr/local/rustup
 COPY --from=setup --chown=${UID}:${GID} /usr/local/rustup/  /usr/local/rustup/
+
+# Install Rust toolchains
+RUN rustup update && \
+    rustup component add rustfmt clippy rust-analysis rust-src && \
+    # Install cross(Docker remote support ver)
+    cargo install --git https://github.com/schrieveslaach/cross/ --branch docker-remote
 
 # Setup working user
 USER ${UID}

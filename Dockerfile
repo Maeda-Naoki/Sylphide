@@ -25,10 +25,6 @@ RUN install -m 0755 -d /etc/apt/keyrings && \
     apt update && apt install -y --no-install-recommends \
     docker-ce-cli
 
-# Download rust-analyzer language server binary
-RUN curl -L ${RustAnalyzerReleaseURL} | gunzip -c - > ${RustAnalyzerTempBinPath} && \
-    chmod +x ${RustAnalyzerTempBinPath}
-
 # Install Rust toolchains
 RUN rustup update && \
     rustup component add rustfmt clippy rust-analysis rust-src && \
@@ -54,11 +50,6 @@ ARG UserHomeDir="/home/developer"
 
 # rust-analyzer Language Server Binary
 ARG RustAnalyzerTempBinPath="/tmp/rust-analyzer"
-ARG RustAnalyzerBinDirctory=${UserHomeDir}"/.local/bin/"
-ARG RustAnalyzerBinPath=${RustAnalyzerBinDirctory}"rust-analyzer"
-
-# Docker image environment variable
-ENV PATH $PATH:${RustAnalyzerBinDirctory}
 
 # Add build user (Non-root user)
 RUN groupadd -g ${GID} ${GroupName} && \
@@ -66,9 +57,6 @@ RUN groupadd -g ${GID} ${GroupName} && \
 
 # Copy Docker cli binary
 COPY --from=setup /usr/bin/docker /usr/bin/docker
-
-# Copy rust-analyzer language server binary
-COPY --from=setup ${RustAnalyzerTempBinPath} ${RustAnalyzerBinPath}
 
 # Copy rust directory
 RUN  rm -rf /usr/local/cargo /usr/local/rustup

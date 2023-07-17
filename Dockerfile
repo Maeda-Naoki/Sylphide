@@ -62,6 +62,9 @@ RUN rustup update && \
     # Install cross(Docker remote support ver)
     cargo install --git https://github.com/schrieveslaach/cross/ --branch docker-remote
 
+# Change cargo dir owner
+RUN chown -R ${UID}:${GID} /usr/local/cargo/
+
 # Setup working user
 USER ${UID}
 WORKDIR ${UserHomeDir}

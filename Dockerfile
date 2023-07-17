@@ -58,7 +58,7 @@ COPY --from=setup --chown=${UID}:${GID} /usr/local/rustup/  /usr/local/rustup/
 
 # Install Rust toolchains
 RUN rustup update && \
-    rustup component add rustfmt clippy rust-analysis rust-src && \
+    rustup component add rustfmt clippy rust-analysis rust-src rust-analyzer && \
     # Install cross(Docker remote support ver)
     cargo install --git https://github.com/schrieveslaach/cross/ --branch docker-remote
 
